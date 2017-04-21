@@ -1,0 +1,156 @@
+package com.nefed.stringFormat;
+
+import java.util.Date;
+import java.util.Locale;
+
+/**
+ * User: Gavin
+ * E-mail: GavinChangCN@163.com
+ * Desc:
+ * Date: 2017-04-21
+ * Time: 15:30
+ */
+public class main {
+    protected static final String TAG = "main";
+
+    public static void main(String[] args) {
+        System.out.println("基础的字符转换符");
+        stringFormat();
+        System.out.printf("%n%n%n");
+
+        System.out.println("进阶的字符转换符");
+        advanceStringFormat();
+        System.out.printf("%n%n%n");
+
+        System.out.println("基础的日期和时间格式转换符");
+        dateAndTimeFormat();
+        System.out.printf("%n%n%n");
+
+        System.out.println("进阶的日期格式转换符");
+        advanceDateFormat();
+        System.out.printf("%n%n%n");
+
+        System.out.println("进阶的 时间格式转换符");
+        advanceTimeFormat();
+        System.out.printf("%n");
+    }
+
+    private static void stringFormat() {
+        System.out.println(String.format("Hello %s", "World!"));
+        System.out.println(String.format("Hi,%s、%s、%s", "Java", "Kolin", "Golang"));
+        System.out.printf("字母a的大写是：%c %n", 'A');
+        System.out.printf("10>1的结果是：%b %n", 10 > 1);
+        System.out.printf("100的一半是：%d %n", 100 / 2);
+        System.out.printf("100的16进制数是：%x %n", 100);
+        System.out.printf("100的8进制数是：%o %n", 100);
+        System.out.printf("50元的书打8.5折扣是：%f 元 %n", 50 * 0.85);
+        System.out.printf("上面价格的16进制数是：%a %n", 50 * 0.85);
+        System.out.printf("上面价格的指数表示：%e %n", 50 * 0.85);
+        System.out.printf("上面价格的指数和浮点数结果的长度较短的是：%g %n", 50 * 0.85);
+        System.out.printf("上面的折扣是%d%% %n", 85);
+        System.out.printf("字母A的散列码是：%h %n", 'A');
+    }
+
+    private static void advanceStringFormat() {
+        // + 使用
+        System.out.printf("显示正负数的符号：%+d与%d %n", 10, -10);
+        // - 使用
+        System.out.printf("显示左对齐的符号：n%-5dn%-6dn %n", 25, -32);
+        // O 使用
+        System.out.printf("编号是：%04d %n", 21);
+        // 空格 使用
+        System.out.printf("Tab键的效果是：% 4d %n", 7);
+        // , 使用
+        System.out.printf("整数分组的效果是：%,d %n", 9989997);
+        // ( 使用
+        System.out.printf("使用括号包含负数的效果是：%(f", -88.88);
+        // # 使用
+        System.out.printf("#x的效果是：%#x，#o的效果是：%#o %n", 99, 99);
+        // < 使用
+        System.out.printf("格式化前一个转换符所描述的参数:%f ; %<3.2f %n", 99.45, 99.45);
+        // $ 使用
+        System.out.println(String.format("格式参数$的使用：%1$d,%2$s", 99, "abc"));
+        // 空格和小数点后面个数
+        System.out.printf("一本书的价格是：% 5.5f元%n", 49.8);
+    }
+
+    private static void dateAndTimeFormat() {
+        Date date = new Date();
+        // c 的使用
+        System.out.printf("全部日期和时间信息：%tc%n", date);
+        // f 的使用
+        System.out.printf("年-月-日格式：%tF%n", date);
+        // d 的使用
+        System.out.printf("月/日/年格式：%tD%n", date);
+        // r 的使用
+        System.out.printf("HH:MM:SS PM格式（12时制）：%tr%n", date);
+        // t 的使用
+        System.out.printf("HH:MM:SS格式（24时制）：%tT%n", date);
+        // R 的使用
+        System.out.printf("HH:MM格式（24时制）：%tR", date);
+    }
+
+    private static void advanceDateFormat() {
+        Date date = new Date();
+        // b 的使用，月份简称
+        String str = String.format(Locale.US, "英文月份简称：%tb", date);
+        System.out.println(str);
+        System.out.printf("本机语言环境的月份简称：%tb%n", date);
+        // B 的使用，月份全称
+        str = String.format(Locale.US, "英文月份全称：%tB", date);
+        System.out.println(str);
+        System.out.printf("本机语言环境的月份全称：%tB%n", date);
+        // a 的使用，星期简称
+        str = String.format(Locale.US, "英文星期的简称：%ta", date);
+        System.out.println(str);
+        System.out.printf("本机语言环境的星期的简称：%ta%n", date);
+        // A 的使用，星期全称
+        str = String.format(Locale.US, "英文星期的全称：%tA", date);
+        System.out.println(str);
+        System.out.printf("本机语言环境的星期的全称：%tA%n", date);
+        // C 的使用，年前两位
+        System.out.printf("年的前两位数字（不足两位前面补0）：%tC%n", date);
+        // y 的使用，年后两位
+        System.out.printf("年的后两位数字（不足两位前面补0）：%ty%n", date);
+        // j 的使用，一年的天数
+        System.out.printf("一年中的天数（即年的第几天）：%tj%n", date);
+        // m 的使用，月份
+        System.out.printf("两位数字的月份（不足两位前面补0）：%tm%n", date);
+        // d 的使用，日（二位，不够补零）
+        System.out.printf("两位数字的日（不足两位前面补0）：%td%n", date);
+        // e 的使用，日（一位不补零）
+        System.out.printf("月份的日（前面不补0）：%te", date);
+    }
+
+    private static void advanceTimeFormat() {
+        Date date = new Date();
+        //H的使用
+        System.out.printf("2位数字24时制的小时（不足2位前面补0）:%tH%n", date);
+        //I的使用
+        System.out.printf("2位数字12时制的小时（不足2位前面补0）:%tI%n", date);
+        //k的使用
+        System.out.printf("2位数字24时制的小时（前面不补0）:%tk%n", date);
+        //l的使用
+        System.out.printf("2位数字12时制的小时（前面不补0）:%tl%n", date);
+        //M的使用
+        System.out.printf("2位数字的分钟（不足2位前面补0）:%tM%n", date);
+        //S的使用
+        System.out.printf("2位数字的秒（不足2位前面补0）:%tS%n", date);
+        //L的使用
+        System.out.printf("3位数字的毫秒（不足3位前面补0）:%tL%n", date);
+        //N的使用
+        System.out.printf("9位数字的毫秒数（不足9位前面补0）:%tN%n", date);
+        //p的使用
+        String str = String.format(Locale.US, "小写字母的上午或下午标记(英)：%tp", date);
+        System.out.println(str);
+        System.out.printf("小写字母的上午或下午标记（中）：%tp%n", date);
+        //z的使用
+        System.out.printf("相对于GMT的RFC822时区的偏移量:%tz%n", date);
+        //Z的使用
+        System.out.printf("时区缩写字符串:%tZ%n", date);
+        //s的使用
+        System.out.printf("1970-1-1 00:00:00 到现在所经过的秒数：%ts%n", date);
+        //Q的使用
+        System.out.printf("1970-1-1 00:00:00 到现在所经过的毫秒数：%tQ%n", date);
+    }
+}
